@@ -39,6 +39,7 @@
                            class="form-control"
                            :class="{ 'is-invalid': submitted && errors.has('address') }"/>
                 </div>
+                <div v-if="submitted && errors.has('address')" class="invalid-feedback">{{ errors.first('address') }}</div>
 
                 <div class="form-group col-md-6">
                     <label htmlFor="phone">Phone</label>
