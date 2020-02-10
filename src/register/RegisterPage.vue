@@ -87,9 +87,9 @@ export default {
                 lastName: '',
                 username: '',
                 password: '',
-                email: '',
                 address: '',
                 phone: '',
+                email: '',
             },
             submitted: false
         }
