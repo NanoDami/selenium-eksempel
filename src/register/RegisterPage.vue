@@ -105,7 +105,7 @@ export default {
             return moment().subtract(18, 'years').format('DD.MM.YYYY')
         },
         minBirthDate: function () {
-            return moment().subtract(80, 'years').format('DD.MM.YYYY')
+            return moment().subtract(100, 'years').format('DD.MM.YYYY')
         }
     },
     methods: {
