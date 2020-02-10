@@ -54,22 +54,6 @@
                 </div>
             </div>
 
-            <div class="row">
-
-                <div class="form-group col-md-6">
-                    <label htmlFor="birthdate">Date of birth</label>
-                    <input
-                            type="date"
-                            v-model="user.birthDate"
-                            v-validate="{required:true, dateFormat:'DD.MM.YYYY', date_between:[minBirthDate, maxBirthDate]}"
-                            name="birthDate"
-                            class="form-control"
-                            :class="{'is-invalid': submitted && errors.has('birthDate')}"
-                    />
-                    <div v-if="submitted && errors.has('birthDate')" class="invalid-feedback">{{ errors.first('birthDate') }}</div>
-                </div>
-            </div>
-
             <div class="form-group">
                 <button class="btn btn-primary" :disabled="status.registering">Register</button>
                 <img v-show="status.registering" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
@@ -100,13 +84,7 @@ export default {
         }
     },
     computed: {
-        ...mapState('account', ['status']),
-        maxBirthDate: function () {
-            return moment().subtract(18, 'years').format('DD.MM.YYYY')
-        },
-        minBirthDate: function () {
-            return moment().subtract(100, 'years').format('DD.MM.YYYY')
-        }
+        ...mapState('account', ['status'])
     },
     methods: {
         ...mapActions('account', ['register']),
