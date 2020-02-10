@@ -61,10 +61,13 @@
                     <input
                             type="date"
                             v-model="user.birthDate"
-                            v-validate="{required:true, max: }"
+                            v-validate="{required:true, dateFormat:'DD.MM.YYYY', date_between:[minBirthDate, maxBirthDate]}"
+                            name="birthDate"
+                            class="form-control"
+                            :class="{'is-invalid': submitted && errors.has('birthDate')}"
                     />
+                    <div v-if="submitted && errors.has('birthDate')" class="invalid-feedback">{{ errors.first('birthDate') }}</div>
                 </div>
-
             </div>
 
             <div class="form-group">
@@ -78,6 +81,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import moment from "moment";
 
 export default {
     data () {
@@ -96,7 +100,13 @@ export default {
         }
     },
     computed: {
-        ...mapState('account', ['status'])
+        ...mapState('account', ['status']),
+        maxBirthDate: function () {
+            return moment().subtract(18, 'years').format('DD.MM.YYYY')
+        },
+        minBirthDate: function () {
+            return moment().subtract(80, 'years').format('DD.MM.YYYY')
+        }
     },
     methods: {
         ...mapActions('account', ['register']),
