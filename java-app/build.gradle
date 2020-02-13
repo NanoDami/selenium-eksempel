@@ -12,5 +12,15 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile('org.junit.jupiter:junit-jupiter:5.5.1')
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
