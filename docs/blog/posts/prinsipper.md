@@ -25,6 +25,7 @@ Mens idag, har man et tett koblet system som gjør at man må kjøpe en ny telef
 Når vi snakker om moduler her, så kan en modul være alt fra en pakke til enkeltfunksjoner.
 ###S - Single responsibility prinsippet
 Dette prinsippet sier at hver modul burde ha ansvar for en enkelt del av funksjonaliteten programvaren tilbyr.
+Dette er praktiskt talt det samme som DRY, så her burde jeg skamme meg litt...
 ###O - Open Closed prinsippet
 Dette prinsippet sier at enhver modul er åpen for utvidelser, men stengt for modifikasjoner.
 ###L - Liskov Substitution prinsippet
