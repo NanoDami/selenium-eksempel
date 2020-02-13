@@ -14,8 +14,15 @@ Så ved å bruke felles kode for 2 forskjellige funksjonaliteter, så vil man kn
 OrdreID endrer formatet, så kan man samtidig risikere å brekke koden til Personnummer.
 
 ## SOLID
-Et akronym for de fem første Objektorienterte designprinsippene som først ble introdusert av [Uncle Bob](https://en.wikipedia.org/wiki/Robert_Cecil_Martin)
-Her kan en modul være alt fra en pakke til enkeltfunksjoner.
+Et akronym for de fem første Objektorienterte designprinsippene som først ble introdusert av [Uncle Bob](https://en.wikipedia.org/wiki/Robert_Cecil_Martin).
+SOLID er en arbeidsmåte som lar oss bygge [løst koblete programvareløsninger](https://en.wikipedia.org/wiki/Loose_coupling).
+Å gjøre noe løst koblet, vil si at man kan skille og isolere moduler, sånn at hver modul vil ha en bestemt rolle.
+
+Et eksempel på noe som var løst koblet, var de gamle telefonene: Dersom man trengte 
+et nytt batteri, så kunne man bare bytte ut det defekte batteriet med et nytt ett.
+Mens idag, har man et tett koblet system som gjør at man må kjøpe en ny telefon dersom batteriet er ødelagt.
+
+Når vi snakker om moduler her, så kan en modul være alt fra en pakke til enkeltfunksjoner.
 ###S - Single responsibility prinsippet
 Dette prinsippet sier at hver modul burde ha ansvar for en enkelt del av funksjonaliteten programvaren tilbyr.
 ###O - Open Closed prinsippet
