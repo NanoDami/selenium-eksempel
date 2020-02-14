@@ -1,5 +1,7 @@
+import no.politiet.pageObjects.LoggInnPageObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,11 +17,18 @@ public class LogInTest {
     @DisplayName("Se at man ikke kan logge inn med feil brukernavn") // Hvordan vi vil kunne se denne testen i logger.
     void loggInnMedFeilBrukerNavn() {
 
+        // Instansierer et nytt LoggInnPageObject
         LoggInnPageObject loggInnSide = new LoggInnPageObject();
+        // Her setter jeg opp noe data jeg vil teste på
         String brukerNavn = "DMH002";
         String passord = "Nice try, foreign intelligence service...";
+
+        //Her utfører jeg handlingen jeg ønsker
         loggInnSide.loggInnMed(brukerNavn, passord);
-        assertTrue(loggInnSide.feilMelding.isVisible());
+
+        //jUnit sin måte å verifisere. Det blir fine logger av å gjøre det på denne måten.
+        //isVisible er en funksjon som spesifiseres av Selenium sitt WebElement-interface.
+        assertTrue(loggInnSide.hentFeilMelding().isDisplayed());
 
     }
 }
