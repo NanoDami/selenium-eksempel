@@ -168,7 +168,7 @@ Hurra! Dette er veldig flott på grunn av 3 ting
 2. Vi vet nå at jUnit er konfigurert riktig på vår maskin og kan kjøre tester for oss.
 3. Siden vi har lagt inn `NotImplementedException` i koden vår som skal brukes, vil vi alltid få en feilmelding der vi har glemt å skrive kode. Som praktiskt talt dobler som en dynamisk todo-liste.
 
-#### Fikse vår første exception.
+#### Fikse vår første exception og det som følger.
 Nå er tiden endelig kommet for å skrive noe ordentlig kode som gjør ting.
 Vårt første problem ligger i funksjonen loggInnMed(), så la oss implementere den!
 Det denne funksjonen skal gjøre, er å logge inn med et brukernavn og passord.
@@ -179,7 +179,16 @@ public void loggInnMed(String brukerNavn, String passord) {
         driver.findElement(By.id("Register")).click();
 }
 ```
-Kjører man testen igjen, vil man kunne se dette skje.
+Kjører man testen igjen, vil man kunne se dette skje og vi får vår
+en ny NotImplementedException, som sier at vi ikke har implementert vår neste funksjon i testen: `hentFeilMelding()`
+```java
+public WebElement hentFeilMelding() {
+        //Jeg har lagt til denne etter genereringen av metoden.
+        return driver.findElement(By.cssSelector("body > div.jumbotron > div > div > div > div.alert.alert-danger"));
+}
+```
+Dette feltet har desverre ikke en id, men det er ikke nødvendigvis noen krise for å få testen opp og gå, det er jo ingenting som stopper oss fra å fikse på dette i fremtiden.
+
 
 ## Litteratur
 * Arnon Axelrod, Complete Guide to Test Automation.

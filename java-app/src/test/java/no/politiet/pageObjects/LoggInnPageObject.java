@@ -19,6 +19,6 @@ public class LoggInnPageObject {
 
     public WebElement hentFeilMelding() {
         //Jeg har lagt til denne etter genereringen av metoden.
-        throw new NotImplementedException();
+        return driver.findElement(By.cssSelector("body > div.jumbotron > div > div > div > div.alert.alert-danger"));
     }
 }
