@@ -53,6 +53,36 @@ så vil vedkommende få en feilmelding.
 Det neste trinnet i arbeidsflyten vår vil altså da være å oversette denne testen til kode.
 For å oversette dette til kode som både er lett å vedlikeholde og gjenbruke, så vil man at koden skal adlyde
 [gode objekt-orienterte designprinsipper](prinsipper.md).
+Jeg har tatt meg friheten til å flytte testcasen til [den nye testklassen vår](../../../java-app/src/test/java/LogInTest.java)
+Hvor vi kommer til å jobbe videre med den.
+
+###Kode vår første test
+Nå skal vi ta testen vi beskrev i forrige avsnitt og og oversette den til gyldig Java-syntax i [LogInTest.java](../../../java-app/src/test/java/LogInTest.java)
+```java
+public class LogInTest {
+/*
+    Når en person prøver å logge seg inn med feil brukernavn og/eller passord vi ikke har registrert på en bruker,
+    så vil vedkommende få en feilmelding.
+    -------------
+    1. Skriv inn et brukernavn og passord om ikke er registrert
+    2. Verifiser at man får en feilmelding
+ */
+    @Test //Sier at dette er en testfunksjon.
+    @DisplayName("Se at man ikke kan logge inn med feil brukernavn") // Hvordan vi vil kunne se denne testen i logger.
+    void loggInnMedFeilBrukerNavn() {
+
+        String brukerNavn = "DMH002";
+        String passord = "Nice try, foreign intelligence service...";
+
+        LoggInnPageObject loggInnSide = new LoggInnPageObject();
+        
+        loggInnSide.loggInnMed(brukerNavn, passord);
+        assertTrue(loggInnSide.feilMelding.isVisible());
+
+    }
+}
+```
+
 
 ## Litteratur
 * Arnon Axelrod, Complete Guide to Test Automation.
