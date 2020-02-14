@@ -57,8 +57,12 @@ Jeg har tatt meg friheten til å flytte testcasen til [den nye testklassen vår]
 Hvor vi kommer til å jobbe videre med den.
 
 ###Kode vår første test
-Nå skal vi ta testen vi beskrev i forrige avsnitt og og oversette den til gyldig Java-syntax i [LogInTest.java](../../../java-app/src/test/java/LogInTest.java)
-```java
+Nå skal vi ta testen vi beskrev i forrige avsnitt og og oversette den til gyldig Java-syntax i [LogInTest.java](../../../java-app/src/test/java/LogInTest.java).
+Her antar jeg at vi starter med et helt nytt prosjekt, sånn at jeg kan vise hva jeg tenker når jeg starter med nye prosjekter.
+
+Dette her er bare pseudokode og vil ikke kompilere dersom man forsøker, siden vi ikke har implementert noen av klassene vi beskriver enda.
+For øyeblikket tenker ikke jeg å fokusere på å bruke selenium og starte automatiseringen helt enda.
+```Java
 public class LogInTest {
 /*
     Når en person prøver å logge seg inn med feil brukernavn og/eller passord vi ikke har registrert på en bruker,
@@ -71,18 +75,69 @@ public class LogInTest {
     @DisplayName("Se at man ikke kan logge inn med feil brukernavn") // Hvordan vi vil kunne se denne testen i logger.
     void loggInnMedFeilBrukerNavn() {
 
+        // Instansierer et nytt LoggInnPageObject
+        LoggInnPageObject loggInnSide = new LoggInnPageObject();
+        // Her setter jeg opp noe data jeg vil teste på
         String brukerNavn = "DMH002";
         String passord = "Nice try, foreign intelligence service...";
 
-        LoggInnPageObject loggInnSide = new LoggInnPageObject();
-        
+        //Her utfører jeg handlingen jeg ønsker
         loggInnSide.loggInnMed(brukerNavn, passord);
-        assertTrue(loggInnSide.feilMelding.isVisible());
+
+        //jUnit sin måte å verifisere. Det blir fine logger av å gjøre det på denne måten.
+        //isDisplayed() er en funksjon som spesifiseres av Selenium sitt WebElement-interface.
+        assertTrue(loggInnSide.hentFeilMelding().isDisplayed());
 
     }
 }
 ```
+Foreløpig vil jeg bare sørge for å få koden til å kompilere og se at modellen min holder mål, en modell her vil altså være strukturen
+til klassene og funksjonene. Siden jeg fullfører modellen før jeg fullfører implementasjonen, så kan jeg raskt sjekke om jeg mangler noe eller
+må gjøre noe mer.
 
+I tillegg, dersom koden vår ikke kompilerer, så vil vi uansett ikke kunne kjøre testen for å verifisere at ting kjører som forventet.
+Her så vil vi ta små skritt for å sikre at koden gjør nøyaktig det den sier den skal.
+Derfor vil jeg holde meg til å sørge for at ting kompilerer.
+
+For at funksjonene vi lager skal kunne kompilere, må de ha noe kode for å kunne
+bli kompilert og vi kan kjøre på videre, så hver funksjon skal kun gjøre en ting i starten: Kaste en notImplementedException().
+Senere vil man se at dette vil hjelpe oss på veien med å skrive god kode og peke oss i riktig retning sammen med feilmeldingene vi nå har i klassen vår.
+ 
+#### Behandle feilmeldingene som en oppgaveliste
+Nå har vi en del feilmeldinger i klassen vår og min fremgangsmåte er å behandle det som en TODO-liste vi skal jobbe oss nedover.
+
+Det første vi må gjøre er å håndtere meldingen om at LoggInnPageObject ikke er definert, heldigvis har våre IDE'er gode løsninger for å håndtere dette og 
+ved å lese feilmeldingen som vi får fra Eclipse/IntelliJ, så kan man se at den tilbyr seg å lage klassen for oss.
+Når jeg gjør dette, får jeg dette fra IntelliJ:
+```java
+public class LoggInnPageObject {
+}
+```
+Den andre feilmeldingen klager på at LoggInnPageObject ikke har noen metode som heter _loggInnMed_
+Etter å ha brukt IntelliJ til å hjelpe meg med dette, så får jeg dette i min klasse.
+```java
+public class LoggInnPageObject {
+    public void loggInnMed(String brukerNavn, String passord) {
+        //Jeg har lagt til denne etter genereringen av metoden.
+        throw new NotImplementedException();
+    }
+}
+```
+
+Den siste feilmeldingen vi får, er at LoggInnPageObject ikke har en metode som heter _hentFeilMelding_
+Dette løser vi på samme måte og nå ser klassen vår slik ut:
+```java
+public class LoggInnPageObject {
+    public void loggInnMed(String brukerNavn, String passord) {
+        //Jeg har lagt til denne etter genereringen av metoden.
+        throw new NotImplementedException();
+    }
+
+    public WebElement hentFeilMelding() {
+        //Jeg har lagt til denne etter genereringen av metoden.
+        throw new NotImplementedException();
+    }
+```
 
 ## Litteratur
 * Arnon Axelrod, Complete Guide to Test Automation.
