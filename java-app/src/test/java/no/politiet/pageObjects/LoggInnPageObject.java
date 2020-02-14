@@ -1,5 +1,6 @@
 package no.politiet.pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -11,9 +12,9 @@ public class LoggInnPageObject {
     }
 
     public void loggInnMed(String brukerNavn, String passord) {
-
-        //Jeg har lagt til denne etter genereringen av metoden.
-        throw new NotImplementedException();
+        driver.findElement(By.id("username_field")).sendKeys(brukerNavn);
+        driver.findElement(By.id("password_field")).sendKeys(passord);
+        driver.findElement(By.id("Register")).click();
     }
 
     public WebElement hentFeilMelding() {

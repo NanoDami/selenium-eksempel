@@ -76,7 +76,7 @@ public class LogInTest {
     void loggInnMedFeilBrukerNavn() {
 
         // Instansierer et nytt LoggInnPageObject
-        LoggInnPageObject loggInnSide = new LoggInnPageObject();
+        LoggInnPageObject loggInnSide = new LoggInnPageObject(driver);
         // Her setter jeg opp noe data jeg vil teste på
         String brukerNavn = "DMH002";
         String passord = "Nice try, foreign intelligence service...";
@@ -91,6 +91,8 @@ public class LogInTest {
     }
 }
 ```
+Jeg dropper å vise setup og teardown her, siden det burde man kunne allerede.
+
 Foreløpig vil jeg bare sørge for å få koden til å kompilere og se at modellen min holder mål, en modell her vil altså være strukturen
 til klassene og funksjonene. Siden jeg fullfører modellen før jeg fullfører implementasjonen, så kan jeg raskt sjekke om jeg mangler noe eller
 må gjøre noe mer.
@@ -111,12 +113,21 @@ ved å lese feilmeldingen som vi får fra Eclipse/IntelliJ, så kan man se at de
 Når jeg gjør dette, får jeg dette fra IntelliJ:
 ```java
 public class LoggInnPageObject {
+    WebDriver driver;//Lagt til etter generering
+    public LoggInnPageObject(WebDriver driver) {
+        this.driver = driver;//Lagt til etter generering
+    }
 }
 ```
 Den andre feilmeldingen klager på at LoggInnPageObject ikke har noen metode som heter _loggInnMed_
 Etter å ha brukt IntelliJ til å hjelpe meg med dette, så får jeg dette i min klasse.
 ```java
 public class LoggInnPageObject {
+    WebDriver driver;
+    public LoggInnPageObject(WebDriver driver) {
+            this.driver = driver;//Lagt til etter generering
+    }
+
     public void loggInnMed(String brukerNavn, String passord) {
         //Jeg har lagt til denne etter genereringen av metoden.
         throw new NotImplementedException();
@@ -128,6 +139,11 @@ Den siste feilmeldingen vi får, er at LoggInnPageObject ikke har en metode som 
 Dette løser vi på samme måte og nå ser klassen vår slik ut:
 ```java
 public class LoggInnPageObject {
+    WebDriver driver;
+    public LoggInnPageObject(WebDriver driver) {
+            this.driver = driver;//Lagt til etter generering
+    }
+
     public void loggInnMed(String brukerNavn, String passord) {
         //Jeg har lagt til denne etter genereringen av metoden.
         throw new NotImplementedException();
@@ -137,7 +153,33 @@ public class LoggInnPageObject {
         //Jeg har lagt til denne etter genereringen av metoden.
         throw new NotImplementedException();
     }
+}
 ```
+
+Når alle feilmeldinger i testen vår er håndtert, så kan man faktisk kjøre testen ved å klikke på den grønne pilen vi er vant til.
+Det som skjer da, er at java vil kompilere koden vår (uten feil, yay!) og vi får vår første feilmelding fra selve testen:
+```
+NotImplementedException
+at LoggInnPageObject.java:9
+at LogInTest.loggInnMedFeilBrukerNavn(LogInTest.java:27)
+```
+Hurra! Dette er veldig flott på grunn av 3 ting
+1. Vi vet nå at koden vår kompilerer, som betyr at modellen vår stemmer og ser fremdeles ganske lesbar ut.
+2. Vi vet nå at jUnit er konfigurert riktig på vår maskin og kan kjøre tester for oss.
+3. Siden vi har lagt inn `NotImplementedException` i koden vår som skal brukes, vil vi alltid få en feilmelding der vi har glemt å skrive kode. Som praktiskt talt dobler som en dynamisk todo-liste.
+
+#### Fikse vår første exception.
+Nå er tiden endelig kommet for å skrive noe ordentlig kode som gjør ting.
+Vårt første problem ligger i funksjonen loggInnMed(), så la oss implementere den!
+Det denne funksjonen skal gjøre, er å logge inn med et brukernavn og passord.
+```java
+public void loggInnMed(String brukerNavn, String passord) {
+        driver.findElement(By.id("username_field")).sendKeys(brukerNavn);
+        driver.findElement(By.id("password_field")).sendKeys(passord);
+        driver.findElement(By.id("Register")).click();
+}
+```
+Kjører man testen igjen, vil man kunne se dette skje.
 
 ## Litteratur
 * Arnon Axelrod, Complete Guide to Test Automation.
