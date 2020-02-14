@@ -24,6 +24,7 @@ public class LogInTest {
     @BeforeEach
     void setup() {
         driver = new ChromeDriver();
+        driver.get("http://localhost:8080");
     }
 
     @AfterEach
