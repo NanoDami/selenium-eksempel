@@ -1,7 +1,7 @@
 import no.politiet.pageObjects.LoggInnPageObject;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -13,12 +13,24 @@ public class LogInTest {
     1. Skriv inn et brukernavn og passord om ikke er registrert
     2. Verifiser at man får en feilmelding
  */
+
+    WebDriver driver;
+    @BeforeEach
+    void setup() {
+        driver = new ChromeDriver();
+    }
+
+    @AfterEach
+    void teardown() {
+        driver.quit();
+    }
+
     @Test //Sier at dette er en testfunksjon.
     @DisplayName("Se at man ikke kan logge inn med feil brukernavn") // Hvordan vi vil kunne se denne testen i logger.
     void loggInnMedFeilBrukerNavn() {
 
         // Instansierer et nytt LoggInnPageObject
-        LoggInnPageObject loggInnSide = new LoggInnPageObject();
+        LoggInnPageObject loggInnSide = new LoggInnPageObject(driver);
         // Her setter jeg opp noe data jeg vil teste på
         String brukerNavn = "DMH002";
         String passord = "Nice try, foreign intelligence service...";
