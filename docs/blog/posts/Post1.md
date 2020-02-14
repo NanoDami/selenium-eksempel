@@ -50,6 +50,9 @@ så vil vedkommende få en feilmelding.
 2. Verifiser at man får en feilmelding
 ```
 
+Det neste trinnet i arbeidsflyten vår vil altså da være å oversette denne testen til kode.
+For å oversette dette til kode som både er lett å vedlikeholde og gjenbruke, så vil man at koden skal adlyde
+[gode objekt-orienterte designprinsipper](prinsipper.md).
 
 ## Litteratur
 * Arnon Axelrod, Complete Guide to Test Automation.
