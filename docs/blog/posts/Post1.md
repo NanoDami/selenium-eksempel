@@ -188,7 +188,21 @@ public WebElement hentFeilMelding() {
 }
 ```
 Dette feltet har desverre ikke en id, men det er ikke nødvendigvis noen krise for å få testen opp og gå, det er jo ingenting som stopper oss fra å fikse på dette i fremtiden.
+Kjører man testen igjen, så får man beskjed om at man fremdeles ikke kan finne elementet.
+Her kan det alltids være lurt å gå igjennom hvert skritt i testen manuelt og se nøye på hva som skjer etter hvert trinn på nettsiden.
+I dette tilfellert: Når man trykker på Login, så tar det noen sekunder før man får svar på om man blir logget inn eller en feilmelding.
+Dette kan løses veldig enkelt dersom vi forteller vår WebDriver at den skal vente i noen sekunder
+før den klager over at man ikke finner elementet:
+```java
+void setup() {
+    driver = new ChromeDriver();
 
+    //Fortell driver at den kan chillen litt.
+    driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+    driver.get("http://localhost:8080");
+}
+```
 
 ## Litteratur
 * Arnon Axelrod, Complete Guide to Test Automation.
