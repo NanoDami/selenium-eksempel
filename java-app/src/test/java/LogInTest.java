@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import no.politiet.pageObjects.LoggInnPageObject;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,11 @@ public class LogInTest {
     1. Skriv inn et brukernavn og passord om ikke er registrert
     2. Verifiser at man får en feilmelding
  */
+
+    @BeforeAll
+    public static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
 
     WebDriver driver;
     @BeforeEach
