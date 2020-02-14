@@ -203,6 +203,14 @@ void setup() {
     driver.get("http://localhost:8080");
 }
 ```
+Dersom man kjører testen, så vil man få alt grønt!
+Sånn at nå vet vi dette:
+* Testinfrastrukturen vår fungerer
+* Modellen vi bruker (pageObject) for å teste nettsiden holder mål
+* Seleniuminfrastrukturen vår fungerer også
+
+Dette ble en litt lang post, men jeg håper den vil være til nytte når det kommer til hvordan jeg tenker i starten av et automatiseringsprosjekt.
+Jeg tenker også å skrive litt om hvordan jeg bruker [Objektorienterte  designprinsipper](prinsipper.md) for å skrive bedre kode, automatisere mer enn bare innloggingstesten og håndtere situasjonen hvor du har flere elementer med samme ID.
 
 ## Litteratur
 * Arnon Axelrod, Complete Guide to Test Automation.
