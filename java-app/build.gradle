@@ -15,6 +15,7 @@ dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.5.1')
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    testCompile("io.github.bonigarcia:webdrivermanager:3.8.1")
 
 }
 
